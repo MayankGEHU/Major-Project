@@ -123,19 +123,31 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Decorative elements */}
-      <div className="absolute inset-0 pointer-events-none z-5">
-        <div className="absolute top-20 left-1/4 w-px h-40 bg-gradient-to-b from-transparent via-primary/20 to-transparent" />
-        <div className="absolute top-40 right-1/4 w-px h-60 bg-gradient-to-b from-transparent via-accent/20 to-transparent" />
-        <div className="absolute bottom-32 left-1/3 w-32 h-px bg-gradient-to-r from-transparent via-secondary/20 to-transparent" />
-        <div className="absolute bottom-48 right-1/3 w-24 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
-      </div>
-
       {/* Corner frames */}
-      <div className="absolute top-10 left-10 w-20 h-20 border-l border-t border-primary/20 hidden md:block" />
-      <div className="absolute top-10 right-10 w-20 h-20 border-r border-t border-primary/20 hidden md:block" />
-      <div className="absolute bottom-10 left-10 w-20 h-20 border-l border-b border-primary/20 hidden md:block" />
-      <div className="absolute bottom-10 right-10 w-20 h-20 border-r border-b border-primary/20 hidden md:block" />
+{/* TOP LEFT */}
+<div className="absolute top-8 left-8 w-16 h-16 pointer-events-none">
+  <span className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500" />
+  <span className="absolute top-0 left-0 w-[2px] h-full bg-gradient-to-b from-purple-500 via-pink-500 to-blue-500" />
+</div>
+
+{/* TOP RIGHT */}
+<div className="absolute top-8 right-8 w-16 h-16 pointer-events-none">
+  <span className="absolute top-0 right-0 w-full h-[2px] bg-gradient-to-l from-purple-500 via-pink-500 to-blue-500" />
+  <span className="absolute top-0 right-0 w-[2px] h-full bg-gradient-to-b from-purple-500 via-pink-500 to-blue-500" />
+</div>
+
+{/* BOTTOM LEFT */}
+<div className="absolute bottom-8 left-8 w-16 h-16 pointer-events-none">
+  <span className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500" />
+  <span className="absolute bottom-0 left-0 w-[2px] h-full bg-gradient-to-t from-purple-500 via-pink-500 to-blue-500" />
+</div>
+
+{/* BOTTOM RIGHT */}
+<div className="absolute bottom-8 right-8 w-16 h-16 pointer-events-none">
+  <span className="absolute bottom-0 right-0 w-full h-[2px] bg-gradient-to-l from-purple-500 via-pink-500 to-blue-500" />
+  <span className="absolute bottom-0 right-0 w-[2px] h-full bg-gradient-to-t from-purple-500 via-pink-500 to-blue-500" />
+</div>
+
 
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent z-30 pointer-events-none" />
     </section>

@@ -11,7 +11,7 @@ import Preloader from './components/Preloader'
 export default function page() {
   return (
     <div>
-      {/* <Preloader/> */}
+      <Preloader/>
       <Nav/>
       {/* <Hero/> */}
       <HeroSection/>
