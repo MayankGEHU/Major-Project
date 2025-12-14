@@ -90,7 +90,7 @@ Machine Learning & AI:
 *   Generative AI (LLM-based analysis)
     
 
-Database:
+<!-- Database:
 
 *   MongoDB / MySQL
     
@@ -100,7 +100,7 @@ Other Tools:
 *   JWT Authentication
     
 *   Git and GitHub
-    
+     -->
 
 * * *
 
