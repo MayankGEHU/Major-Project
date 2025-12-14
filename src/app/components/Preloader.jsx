@@ -29,7 +29,13 @@ const Preloader = ({ onComplete }) => {
     tl.fromTo(
       nameRef.current,
       { opacity: 0, y: 30, filter: "blur(10px)" },
-      { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.8, ease: "power2.out" }
+      {
+        opacity: 1,
+        y: 0,
+        filter: "blur(0px)",
+        duration: 0.8,
+        ease: "power2.out",
+      }
     );
 
     tl.to(
@@ -61,66 +67,84 @@ const Preloader = ({ onComplete }) => {
   return (
     <div
       ref={preloaderRef}
-      className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black overflow-hidden"
+      className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black overflow-hidden px-4"
     >
+      {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-purple-900/10 via-black to-pink-900/10" />
 
-      <div className="absolute top-1/4 left-1/4 w-72 h-72 rounded-full bg-purple-500/10 blur-[120px] animate-pulse" />
-      <div className="absolute bottom-1/4 right-1/4 w-56 h-56 rounded-full bg-pink-500/10 blur-[100px] animate-pulse delay-1000" />
+      {/* Glow blobs */}
+      <div className="absolute top-1/4 left-1/4 w-40 h-40 sm:w-56 sm:h-56 md:w-72 md:h-72 rounded-full bg-purple-500/10 blur-[100px] animate-pulse" />
+      <div className="absolute bottom-1/4 right-1/4 w-32 h-32 sm:w-44 sm:h-44 md:w-56 md:h-56 rounded-full bg-pink-500/10 blur-[90px] animate-pulse delay-1000" />
 
+      {/* Title (WHITE) */}
       <h1
         ref={nameRef}
-        className="relative font-display text-6xl md:text-8xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 mb-12 tracking-wider"
+        className="
+          relative
+          font-display
+          font-bold
+          text-white
+          tracking-wider
+          mb-8 sm:mb-12
+          text-4xl
+          sm:text-6xl
+          md:text-7xl
+          lg:text-8xl
+          text-center
+        "
       >
         QuantumSentinel
       </h1>
 
-      <div className="relative w-64 md:w-80">
+      {/* Progress bar */}
+      <div className="relative w-56 sm:w-64 md:w-80">
         <div className="relative h-1 bg-white/20 rounded-full overflow-hidden">
           <div
             ref={progressBarRef}
             className="absolute left-0 top-0 h-full w-0 rounded-full"
             style={{
               background:
-                "linear-gradient(90deg, #a855f7, #ec4899, #3b82f6)",
-              boxShadow: "0 0 20px rgba(168,85,247,0.6)",
+                "linear-gradient(90deg, #ffffff, #e5e7eb, #ffffff)",
+              boxShadow: "0 0 18px rgba(255,255,255,0.6)",
             }}
           />
         </div>
 
-        <div className="flex justify-center mt-4">
+        <div className="flex justify-center mt-3 sm:mt-4">
           <span
             ref={percentageRef}
-            className="text-sm tracking-widest text-white/70"
+            className="text-xs sm:text-sm tracking-widest text-white/80"
           >
             0%
           </span>
         </div>
       </div>
 
-<div className="absolute top-8 left-8 w-16 h-16 pointer-events-none">
-  <span className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500" />
-  <span className="absolute top-0 left-0 w-[2px] h-full bg-gradient-to-b from-purple-500 via-pink-500 to-blue-500" />
-</div>
+      {/* Corner lines (WHITE) */}
 
-{/* TOP RIGHT */}
-<div className="absolute top-8 right-8 w-16 h-16 pointer-events-none">
-  <span className="absolute top-0 right-0 w-full h-[2px] bg-gradient-to-l from-purple-500 via-pink-500 to-blue-500" />
-  <span className="absolute top-0 right-0 w-[2px] h-full bg-gradient-to-b from-purple-500 via-pink-500 to-blue-500" />
-</div>
+      {/* TOP LEFT */}
+      <div className="absolute top-4 left-4 sm:top-8 sm:left-8 w-10 h-10 sm:w-16 sm:h-16 pointer-events-none">
+        <span className="absolute top-0 left-0 w-full h-[2px] bg-white" />
+        <span className="absolute top-0 left-0 w-[2px] h-full bg-white" />
+      </div>
 
-{/* BOTTOM LEFT */}
-<div className="absolute bottom-8 left-8 w-16 h-16 pointer-events-none">
-  <span className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500" />
-  <span className="absolute bottom-0 left-0 w-[2px] h-full bg-gradient-to-t from-purple-500 via-pink-500 to-blue-500" />
-</div>
+      {/* TOP RIGHT */}
+      <div className="absolute top-4 right-4 sm:top-8 sm:right-8 w-10 h-10 sm:w-16 sm:h-16 pointer-events-none">
+        <span className="absolute top-0 right-0 w-full h-[2px] bg-white" />
+        <span className="absolute top-0 right-0 w-[2px] h-full bg-white" />
+      </div>
 
-{/* BOTTOM RIGHT */}
-<div className="absolute bottom-8 right-8 w-16 h-16 pointer-events-none">
-  <span className="absolute bottom-0 right-0 w-full h-[2px] bg-gradient-to-l from-purple-500 via-pink-500 to-blue-500" />
-  <span className="absolute bottom-0 right-0 w-[2px] h-full bg-gradient-to-t from-purple-500 via-pink-500 to-blue-500" />
-</div>
+      {/* BOTTOM LEFT */}
+      <div className="absolute bottom-4 left-4 sm:bottom-8 sm:left-8 w-10 h-10 sm:w-16 sm:h-16 pointer-events-none">
+        <span className="absolute bottom-0 left-0 w-full h-[2px] bg-white" />
+        <span className="absolute bottom-0 left-0 w-[2px] h-full bg-white" />
+      </div>
 
+      {/* BOTTOM RIGHT */}
+      <div className="absolute bottom-4 right-4 sm:bottom-8 sm:right-8 w-10 h-10 sm:w-16 sm:h-16 pointer-events-none">
+        <span className="absolute bottom-0 right-0 w-full h-[2px] bg-white" />
+        <span className="absolute bottom-0 right-0 w-[2px] h-full bg-white" />
+      </div>
     </div>
   );
 };
