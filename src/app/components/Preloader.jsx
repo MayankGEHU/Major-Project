@@ -119,32 +119,6 @@ const Preloader = ({ onComplete }) => {
           </span>
         </div>
       </div>
-
-      {/* Corner lines (WHITE) */}
-
-      {/* TOP LEFT */}
-      <div className="absolute top-4 left-4 sm:top-8 sm:left-8 w-10 h-10 sm:w-16 sm:h-16 pointer-events-none">
-        <span className="absolute top-0 left-0 w-full h-[2px] bg-white" />
-        <span className="absolute top-0 left-0 w-[2px] h-full bg-white" />
-      </div>
-
-      {/* TOP RIGHT */}
-      <div className="absolute top-4 right-4 sm:top-8 sm:right-8 w-10 h-10 sm:w-16 sm:h-16 pointer-events-none">
-        <span className="absolute top-0 right-0 w-full h-[2px] bg-white" />
-        <span className="absolute top-0 right-0 w-[2px] h-full bg-white" />
-      </div>
-
-      {/* BOTTOM LEFT */}
-      <div className="absolute bottom-4 left-4 sm:bottom-8 sm:left-8 w-10 h-10 sm:w-16 sm:h-16 pointer-events-none">
-        <span className="absolute bottom-0 left-0 w-full h-[2px] bg-white" />
-        <span className="absolute bottom-0 left-0 w-[2px] h-full bg-white" />
-      </div>
-
-      {/* BOTTOM RIGHT */}
-      <div className="absolute bottom-4 right-4 sm:bottom-8 sm:right-8 w-10 h-10 sm:w-16 sm:h-16 pointer-events-none">
-        <span className="absolute bottom-0 right-0 w-full h-[2px] bg-white" />
-        <span className="absolute bottom-0 right-0 w-[2px] h-full bg-white" />
-      </div>
     </div>
   );
 };

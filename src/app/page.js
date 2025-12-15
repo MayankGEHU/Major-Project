@@ -6,6 +6,7 @@ import MainFeature from './components/ui/MainFeature'
 import Footer from './components/ui/Footer'
 import HeroSection from './components/HeroSection'
 import Preloader from './components/Preloader'
+import About from './components/ui/About'
 
 export default function page() {
   return (
@@ -13,7 +14,8 @@ export default function page() {
       <Preloader/>
       <Nav/>
       <Hero/>
-       <MainFeature/>
+      <About/>
+       {/* <MainFeature/> */}
       <Footer/>
     </div>
   )
