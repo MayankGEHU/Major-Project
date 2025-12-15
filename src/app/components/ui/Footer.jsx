@@ -11,8 +11,6 @@ const freshmanFont = localFont({
 export default function Footer() {
   return (
     <footer className="relative w-full min-h-screen bg-black text-white overflow-hidden">
-
-      {/* ✨ ONLY GLOW OVERLAY */}
       <div className="absolute inset-0 pointer-events-none">
         <div
           className="
@@ -27,10 +25,8 @@ export default function Footer() {
         />
       </div>
 
-      {/* CONTENT */}
       <div className="relative z-10 flex flex-col justify-between min-h-screen px-6 md:px-12 py-10">
 
-        {/* MAIN LOGO */}
         <div className="flex justify-center items-center flex-1">
           <h1
             className={`
@@ -46,7 +42,6 @@ export default function Footer() {
           </h1>
         </div>
 
-        {/* SUBSCRIBE */}
         <div className="text-center max-w-xl mx-auto">
           <p className="text-sm md:text-base opacity-80 leading-relaxed">
             Stay ahead of threats. Get early access to QuantumSentinel updates,
@@ -79,7 +74,6 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* BOTTOM BAR */}
         <div className="flex justify-between items-end text-xs opacity-80 mt-16">
           <div>
             <p className="italic">(socials)</p>

@@ -16,14 +16,9 @@ const buttonVariants = cva(
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
 
-        // Premium Hero Button
         hero: "relative overflow-hidden font-display font-semibold tracking-wider uppercase px-8 py-4 text-base bg-gradient-to-r from-primary via-accent to-primary text-primary-foreground border border-primary/50 rounded-lg shadow-[0_0_20px_hsl(270_100%_65%/0.5),0_0_40px_hsl(320_100%_60%/0.3)] hover:shadow-[0_0_30px_hsl(270_100%_65%/0.7),0_0_60px_hsl(320_100%_60%/0.5)] hover:scale-105 hover:border-primary/80 active:scale-100",
-
-        // Neon Outline
         neonOutline:
           "bg-transparent border-2 border-primary text-primary font-display tracking-wider uppercase hover:bg-primary/10 hover:shadow-[0_0_20px_hsl(270_100%_65%/0.5)]",
-
-        // Glass Variant
         glass: "glass text-foreground border border-border/50 hover:bg-card/50 hover:border-primary/30",
       },
 

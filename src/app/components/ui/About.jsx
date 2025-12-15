@@ -5,12 +5,11 @@ import { useRef } from "react";
 import localFont from "next/font/local";
 
 const calSans = localFont({
-  src: "../../../../public/fonts/CalSans-Regular.ttf", // ❗ unchanged
+  src: "../../../../public/fonts/CalSans-Regular.ttf", 
   weight: "400",
   display: "swap",
 });
 
-/* stagger container */
 const container = {
   hidden: {},
   visible: {
@@ -20,7 +19,6 @@ const container = {
   },
 };
 
-/* blur + rise + blue glow together */
 const wordVariant = {
   hidden: {
     opacity: 0,
@@ -72,10 +70,7 @@ export default function About() {
         overflow-hidden
       "
     >
-      {/* existing subtle center glow */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.05),transparent_70%)]" />
-
-      {/* ✅ RIGHT SIDE GLOW (ADDED — NOTHING ELSE CHANGED) */}
       <div
         className="
           absolute
@@ -135,7 +130,6 @@ export default function About() {
           ))}
         </h2>
 
-        {/* subtitle */}
         <motion.p
           initial={{ opacity: 0, y: 16, filter: "blur(8px)" }}
           whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}

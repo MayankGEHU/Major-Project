@@ -116,6 +116,7 @@
 "use client";
 import Link from "next/link";
 import { Geist } from "next/font/google";
+import SignupButton from "./SignupButton";
 
 const geist = Geist({
   subsets: ["latin"],
@@ -126,7 +127,6 @@ export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center text-white overflow-hidden bg-black">
       
-      {/* VIDEO BACKGROUND */}
       <video
         className="
           absolute inset-0 
@@ -143,14 +143,11 @@ export default function Hero() {
         playsInline
       />
 
-      {/* DARK OVERLAY */}
       <div className="absolute inset-0 bg-black/60 z-10" />
 
-      {/* CONTENT */}
       <div className="relative z-20 w-full max-w-7xl px-5 sm:px-6 md:px-12 pt-24 sm:pt-28 pb-20 sm:pb-24">
         <div className="max-w-[620px]">
           
-          {/* HEADING */}
           <h1
             className={`
               ${geist.className}
@@ -167,7 +164,6 @@ export default function Hero() {
             QuantumSentinel
           </h1>
 
-          {/* SUBTEXT */}
           <p className="text-[15px] sm:text-[16px] md:text-[19px] leading-[28px] md:leading-[34px] text-[rgb(185,185,185)] mb-8 sm:mb-12">
             Used by next-generation cyber platforms, this system enables you to
             detect{" "}
@@ -177,7 +173,6 @@ export default function Hero() {
             with adaptive intelligence powered by Generative AI.
           </p>
 
-          {/* BUTTONS */}
           <div className="flex flex-row sm:flex-row items-center gap-3 sm:gap-6">
             <Link
               href="/mlmodel"
@@ -218,7 +213,6 @@ export default function Hero() {
             </Link>
           </div>
 
-          {/* FOOTNOTE */}
           <p className="text-gray-400 mt-6 text-sm flex items-center gap-2">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-800 opacity-70"></span>
