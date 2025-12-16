@@ -1,4 +1,5 @@
 "use client";
+import { useEffect, useRef, useState } from "react";
 import localFont from "next/font/local";
 
 const calSans = localFont({
@@ -8,8 +9,53 @@ const calSans = localFont({
 });
 
 export default function OurQuality() {
+  const sectionRef = useRef(null);
+
+  const [startAnim, setStartAnim] = useState(false);
+  const [value100, setValue100] = useState(0);
+  const [value250, setValue250] = useState(0);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setStartAnim(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.4 }
+    );
+
+    if (sectionRef.current) observer.observe(sectionRef.current);
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!startAnim) return;
+
+    const animateValue = (setFn, target, duration = 1400) => {
+      let start = null;
+
+      const step = (timestamp) => {
+        if (!start) start = timestamp;
+        const progress = Math.min((timestamp - start) / duration, 1);
+        setFn(Math.floor(progress * target));
+        if (progress < 1) requestAnimationFrame(step);
+      };
+
+      requestAnimationFrame(step);
+    };
+
+    animateValue(setValue100, 100);
+    animateValue(setValue250, 250);
+  }, [startAnim]);
+
   return (
-    <section className="relative w-full bg-black text-white py-40 overflow-hidden">
+    <section
+      ref={sectionRef}
+      className="relative w-full bg-black text-white py-40 overflow-hidden"
+    >
 
       <div className="relative flex justify-center mb-36">
         <div
@@ -77,7 +123,7 @@ export default function OurQuality() {
               fontWeight="300"
               fill="white"
             >
-              100%
+              {value100}%
             </text>
           </svg>
 
@@ -125,7 +171,7 @@ export default function OurQuality() {
               fontWeight="300"
               fill="white"
             >
-              +250%
+              +{value250}%
             </text>
           </svg>
 
@@ -134,7 +180,6 @@ export default function OurQuality() {
             powered by generative intelligence
           </p>
         </div>
-
       </div>
     </section>
   );
