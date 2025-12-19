@@ -1,8 +1,6 @@
 const glassCard =
   "relative overflow-hidden rounded-[28px] border border-white/10 bg-gradient-to-br from-[#0b1220]/80 to-[#020617]/90 backdrop-blur-xl shadow-inner";
 
-/* ================= ICONS ================= */
-
 function EndpointIcon() {
   return (
     <svg
@@ -72,12 +70,9 @@ function BlockIcon() {
   );
 }
 
-/* ================= GLOW WRAPPER ================= */
-
 function GlowIcon({ children, color }) {
   return (
     <div className="relative w-8 h-8 flex items-center justify-center">
-      {/* soft SOC aura */}
       <div
         className={`absolute inset-0 blur-2xl opacity-70 ${color}`}
       />
@@ -85,8 +80,6 @@ function GlowIcon({ children, color }) {
     </div>
   );
 }
-
-/* ================= MAIN ================= */
 
 export default function StatCards() {
   const data = [
@@ -129,21 +122,12 @@ export default function StatCards() {
       {data.map((item, i) => (
         <div key={i} className={`${glassCard} p-6`}>
 
-          {/* TOP RIGHT ICON */}
           <div className="absolute top-3 right-3">
             <GlowIcon color={item.glow}>
               {item.icon}
             </GlowIcon>
           </div>
 
-          {/* BOTTOM RIGHT ICON */}
-          {/* <div className="absolute bottom-3 right-3">
-            <GlowIcon color={item.glow}>
-              {item.icon}
-            </GlowIcon>
-          </div> */}
-
-          {/* CONTENT */}
           <p className="text-white/60 text-sm mb-2">
             {item.title}
           </p>

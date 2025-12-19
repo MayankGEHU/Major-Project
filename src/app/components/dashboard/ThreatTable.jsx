@@ -4,7 +4,6 @@ const glassCard =
 export default function ThreatTable() {
   return (
     <div className={`${glassCard} p-6`}>
-      {/* TOP BAR */}
       <div className="flex items-center justify-between mb-6">
         <h3 className="text-white/90 text-[15px] font-medium">
           2,163 Monitored Endpoints · GenAI IDS
@@ -16,10 +15,8 @@ export default function ThreatTable() {
         />
       </div>
 
-      {/* TABLE BORDER WRAPPER */}
       <div className="rounded-2xl border border-white/[0.06] overflow-hidden">
         <table className="w-full text-sm border-collapse">
-          {/* HEADER */}
           <thead>
             <tr className="bg-white/[0.04] text-white/50">
               <th className="px-4 py-4 text-left font-medium">
@@ -46,7 +43,6 @@ export default function ThreatTable() {
             </tr>
           </thead>
 
-          {/* BODY */}
           <tbody>
             {[
               {
