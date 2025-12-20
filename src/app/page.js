@@ -7,6 +7,8 @@ import About from './components/ui/About'
 import Features from './components/ui/Features'
 import OurQuality from './components/ui/OurQuality'
 import Working from './components/ui/Working'
+import { TestimonialsMinimal } from './components/dashboard/TestimonialsMinimal'
+import ComponentDemo from './components/testimonials/ComponentDemo'
 
 export default function page() {
   return (
@@ -18,6 +20,7 @@ export default function page() {
       <Features/>
       <OurQuality/>
       <Working/>
+      {/* <TestimonialsMinimal/> */}
       <Footer/>
     </div>
   )
