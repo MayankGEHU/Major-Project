@@ -3,8 +3,24 @@
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { Transition } from "@headlessui/react";
+import myImg from "../../assets/prof.png";
 
-export const Component = ({ testimonials }) => {
+const testimonials = [
+  {
+    img: myImg,
+    name: "Mayank Singh",
+  },
+  {
+    img: myImg,
+    name: "Vanshika Dixit",
+  },
+  {
+    img: myImg,
+    name: "Harleen Kaur",
+  },
+];
+
+export const Component = () => {
   const testimonialsRef = useRef(null);
   const [active, setActive] = useState(0);
   const [autorotate, setAutorotate] = useState(true);
@@ -20,7 +36,7 @@ export const Component = ({ testimonials }) => {
     }, autorotateTiming);
 
     return () => clearInterval(interval);
-  }, [autorotate, testimonials.length]);
+  }, [autorotate]);
 
   const heightFix = () => {
     if (testimonialsRef.current?.parentElement) {
@@ -35,9 +51,9 @@ export const Component = ({ testimonials }) => {
 
   return (
     <div className="mx-auto w-full max-w-3xl text-center">
-      {/* Avatar Orbit */}
+      {/* ===== AVATAR ORBIT ===== */}
       <div className="relative h-32">
-        <div className="pointer-events-none absolute left-1/2 top-0 h-[480px] w-[480px] -translate-x-1/2 before:absolute before:inset-0 before:-z-10 before:rounded-full before:bg-gradient-to-b before:from-fuchsia-500/25 before:via-fuchsia-500/5 before:via-25% before:to-fuchsia-500/0 before:to-75%">
+        <div className="pointer-events-none absolute left-1/2 top-0 h-[480px] w-[480px] -translate-x-1/2 before:absolute before:inset-0 before:-z-10 before:rounded-full before:bg-gradient-to-b before:from-blue-500/25 before:via-blue-500/5 before:via-25% before:to-blue-500/0 before:to-75%">
           <div className="h-32 [mask-image:_linear-gradient(0deg,transparent,theme(colors.white)_20%,theme(colors.white))]">
             {testimonials.map((testimonial, index) => (
               <Transition
@@ -66,53 +82,22 @@ export const Component = ({ testimonials }) => {
         </div>
       </div>
 
-      {/* Quote */}
-      <div className="mb-9 transition-all delay-300 duration-150 ease-in-out">
-        <div className="relative flex flex-col" ref={testimonialsRef}>
-          {testimonials.map((testimonial, index) => (
-            <Transition
-              key={index}
-              show={active === index}
-              enter="transition ease-in-out duration-500 delay-200 order-first"
-              enterFrom="opacity-0 -translate-x-4"
-              enterTo="opacity-100 translate-x-0"
-              leave="transition ease-out duration-300 delay-300 absolute"
-              leaveFrom="opacity-100 translate-x-0"
-              leaveTo="opacity-0 translate-x-4"
-              beforeEnter={heightFix}
-            >
-              <div className="text-2xl font-bold text-fuchsia-900 before:content-['\201C'] after:content-['\201D']">
-                {testimonial.quote}
-              </div>
-            </Transition>
-          ))}
-        </div>
-      </div>
-
-      {/* Controls */}
+      {/* ===== CONTROLS (NAMES ONLY) ===== */}
       <div className="-m-1.5 flex flex-wrap justify-center">
         {testimonials.map((testimonial, index) => (
           <button
             key={index}
-            className={`m-1.5 inline-flex justify-center whitespace-nowrap rounded-full px-3 py-1.5 text-xs shadow-sm transition-colors duration-150 focus-visible:outline-none focus-visible:ring focus-visible:ring-fuchsia-300 dark:focus-visible:ring-fuchsia-600 ${
+            className={`m-1.5 inline-flex justify-center whitespace-nowrap rounded-full px-4 py-1.5 text-xs font-medium shadow-sm transition-colors duration-150 focus-visible:outline-none focus-visible:ring focus-visible:ring-blue-300 ${
               active === index
-                ? "bg-fuchsia-500 text-white shadow-fuchsia-950/10"
-                : "bg-white text-fuchsia-900 hover:bg-fuchsia-100"
+                ? "bg-blue-500 text-white shadow-blue-950/10"
+                : "bg-white text-blue-900 hover:bg-blue-100"
             }`}
             onClick={() => {
               setActive(index);
               setAutorotate(false);
             }}
           >
-            <span>{testimonial.name}</span>{" "}
-            <span
-              className={
-                active === index ? "text-fuchsia-200" : "text-fuchsia-300"
-              }
-            >
-              -
-            </span>{" "}
-            <span>{testimonial.role}</span>
+            {testimonial.name}
           </button>
         ))}
       </div>

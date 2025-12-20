@@ -20,7 +20,7 @@ export default function page() {
       <Features/>
       <OurQuality/>
       <Working/>
-      {/* <TestimonialsMinimal/> */}
+      {/* <ComponentDemo/> */}
       <Footer/>
     </div>
   )
