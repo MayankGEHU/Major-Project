@@ -81,7 +81,7 @@ export default function Hero() {
             {/* <GetStatButton/> */}
 
             <Link
-              href="/LearnMoreButton"
+              href="/learn"
               className="
                 flex-1 sm:flex-none
                 text-center
