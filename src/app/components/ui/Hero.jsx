@@ -5,6 +5,8 @@ import { Geist } from "next/font/google";
 import GetStatButton from "./herobuttons/GetStatButton";
 import LearnMoreButton from "./herobuttons/LearnMoreButton";
 
+import PageTransition from "../transition/PageTransition";
+
 const geist = Geist({
   subsets: ["latin"],
   weight: ["600"],
@@ -12,7 +14,7 @@ const geist = Geist({
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center text-white overflow-hidden">
+          <section className="relative min-h-screen flex items-center text-white overflow-hidden">
       
       <video
         className="

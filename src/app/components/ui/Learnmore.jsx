@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import localFont from "next/font/local";
 
+import PageTransition from "../transition/PageTransition";
+
 const calSans = localFont({
     src: "../../../../public/fonts/Fellix-Medium.ttf",
     weight: "400",
@@ -70,7 +72,8 @@ export default function LearnMore() {
     }, []);
 
     return (
-        <div className="relative min-h-screen bg-black text-white overflow-x-hidden">
+       <PageTransition>
+         <div className="relative min-h-screen bg-black text-white overflow-x-hidden">
             {/* RIGHT BOTTOM PANEL */}
             <div className="fixed bottom-6 right-6 lg:bottom-8 lg:right-8 w-[260px] lg:w-[300px] z-50">
                 <div className="bg-[#0b0b0b] rounded-lg px-3 py-3 shadow-lg">
@@ -131,5 +134,6 @@ export default function LearnMore() {
                 ))}
             </div>
         </div>
+       </PageTransition>
     );
 }

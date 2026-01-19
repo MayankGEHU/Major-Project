@@ -30,7 +30,7 @@
     "**/*.mts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "src/app/mlmodel/ProjectCard.jsx", "src/app/mlmodel/Home.jsx"  ],
   "exclude": [
     "node_modules"
   ]

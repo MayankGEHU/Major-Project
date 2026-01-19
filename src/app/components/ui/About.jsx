@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useRef } from "react";
 import localFont from "next/font/local";
 
+
 const calSans = localFont({
   src: "../../../../public/fonts/CalSans-Regular.ttf", 
   weight: "400",

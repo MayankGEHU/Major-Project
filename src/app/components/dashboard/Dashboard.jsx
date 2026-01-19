@@ -4,10 +4,12 @@ import StatCards from "./StatCards";
 import TrafficOverview from "./TrafficOverview";
 import ActivePorts from "./ActivePorts";
 import ThreatTable from "./ThreatTable";
+import PageTransition from "../transition/PageTransition";
 
 export default function Dashboard() {
   return (
-    <div className="min-h-screen bg-black text-white p-6">
+    <PageTransition>
+      <div className="min-h-screen bg-black text-white p-6">
       <TopBar />
       <StatCards />
 
@@ -18,5 +20,6 @@ export default function Dashboard() {
 
       <ThreatTable />
     </div>
+      </PageTransition>
   );
 }
