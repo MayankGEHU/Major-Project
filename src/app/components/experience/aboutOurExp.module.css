@@ -1,0 +1,96 @@
+.page {
+  width: 100vw;
+  height: 100vh;
+  background: palevioletred;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  font-weight: bold;
+}
+
+.wrapper {
+  background: #000000;
+}
+
+.scrollSection {
+  overflow: hidden;
+}
+
+.cardContainer {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 0 80px;
+}
+
+.heading {
+  padding-left: 80px;
+  max-width: 720px;
+}
+
+.pillWrapper {
+  position: relative;
+  width: fit-content;
+}
+
+.pill {
+  display: inline-block;
+  padding: 6px 36px;
+  font-size: clamp(1.2rem, 2.5vw, 2rem);
+  font-weight: 800;
+  border-radius: 10px;
+  color: white;
+  white-space: nowrap;
+}
+
+.pillTop {
+  background: #144cc5;
+  position: relative;
+  z-index: 3;
+}
+
+.pillBottom {
+  background: #2117ec;
+  margin-top: -6px;
+  margin-left: 80px; 
+  position: relative;
+  z-index: 1;
+}
+
+.headingDesc {
+  margin-top: 60px;
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
+  line-height: 1.6;
+  color: white;
+  max-width: 900px;
+}
+
+
+.card {
+  flex: 0 0 50%;
+  height: 70%;
+  margin-left: 80px; 
+  border-radius: 16px;
+  box-shadow: rgba(0, 0, 0, 0.5) 0 20px 40px;
+  flex-shrink: 0;
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+}
+
+
+.scrollText {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  font-size: clamp(3rem, 6vw, 6rem);
+  font-weight: 700;
+  color: white;
+  padding-right: 200px;
+  transform: translateX(150px);
+}

@@ -68,7 +68,7 @@ function PageTransition({ children }) {
             <motion.div
             key={i}
             variants={stripsVariants}
-              className="strip h-full grow bg-[#f9f9f9]"
+              className="strip h-full grow bg-[#001219]"
             />
           ))}
         </motion.div>

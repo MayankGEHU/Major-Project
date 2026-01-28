@@ -1,0 +1,19 @@
+.experience {
+  height: 100vh;
+  width: 100%;
+  background-color: black;
+
+  margin-top: 30vh;
+  padding-top: 35vh;
+  overflow: hidden;
+}
+
+.text {
+  font-size: 20vw;
+  white-space: nowrap;
+  text-transform: uppercase;
+  transform: translateX(5vw);
+  color: white;
+  word-spacing: 5vw;
+  line-height: 1;
+}
