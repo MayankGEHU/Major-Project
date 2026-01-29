@@ -10,7 +10,9 @@ const freshmanFont = localFont({
 
 export default function Footer() {
   return (
-    <footer className="relative w-full min-h-screen bg-black text-white overflow-hidden">
+    <footer className="relative w-full h-[800px] bg-black text-white overflow-hidden">
+      
+      {/* Background glow */}
       <div className="absolute inset-0 pointer-events-none">
         <div
           className="
@@ -20,13 +22,14 @@ export default function Footer() {
             w-[90vw]
             h-[90vw]
             rounded-full
-             bg-[radial-gradient(circle,rgba(37,99,235,0.18),transparent_65%)]
+            bg-[radial-gradient(circle,rgba(37,99,235,0.18),transparent_65%)]
           "
         />
       </div>
 
-      <div className="relative z-10 flex flex-col justify-between min-h-screen px-6 md:px-12 py-10">
-
+      <div className="relative z-10 flex flex-col justify-between h-full px-6 md:px-12 py-10">
+        
+        {/* Brand */}
         <div className="flex justify-center items-center flex-1">
           <h1
             className={`
@@ -34,14 +37,14 @@ export default function Footer() {
               text-[10vw]
               leading-none
               tracking-tight
-              relative
+              text-center
             `}
           >
             QuantumSentinel
-            <span className="absolute -top-[12%] -right-[6%] text-[3vw]">®</span>
           </h1>
         </div>
 
+        {/* Description */}
         <div className="text-center max-w-xl mx-auto">
           <p className="text-sm md:text-base opacity-80 leading-relaxed">
             Stay ahead of threats. Get early access to QuantumSentinel updates,
@@ -49,7 +52,8 @@ export default function Footer() {
             in AI-powered cybersecurity. Subscribe to our newsletter.
           </p>
 
-          <div className="mt-10 flex items-center justify-center gap-4">
+          {/* Gap between p and email */}
+          <div className="mt-16 flex items-center justify-center gap-4">
             <input
               type="email"
               placeholder="Your email"
@@ -60,9 +64,11 @@ export default function Footer() {
                 placeholder-white/70
                 italic
                 text-sm
-                w-48
+                w-56
                 text-center
                 caret-white
+                border-b border-white/30
+                pb-1
               "
             />
             <button
@@ -74,13 +80,17 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="flex justify-between items-end text-xs opacity-80 mt-16">
+        {/* Bottom row (gap added from email section) */}
+        <div className="flex justify-between items-end text-xs opacity-80 mt-14">
           <div>
             <p className="italic">(Team Members)</p>
-            <p className="mt-1">Mayank &nbsp; Harleen &nbsp; Vanshika</p>
+            <p className="mt-1">
+              Mayank &nbsp; Harleen &nbsp; Vanshika
+            </p>
           </div>
 
-          <div className="text-center">
+          {/* Extra gap for center text */}
+          <div className="text-center mt-4">
             <p>2025 © QuantumSentinel. All rights reserved.</p>
           </div>
 

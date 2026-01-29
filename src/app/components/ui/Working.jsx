@@ -23,8 +23,8 @@ const calSans = localFont({
 export default function Working() {
   return (
     <section className="relative w-full bg-black text-white pt-40 pb-56 overflow-hidden">
-        <div
-          className="
+      <div
+        className="
             absolute
             -top-[220%]
             w-[1000px]
@@ -34,19 +34,19 @@ export default function Working() {
             blur-[2px]
             z-0
           "
-        />
+      />
       <h2
         className={`
-          ${calSans.className}
-          relative z-10
-          text-center
-          text-[61px]
-          leading-[60px]
-          line
-          font-normal
-          text-white
-          mb-40
-        `}
+  ${calSans.className}
+  relative z-10
+  text-center
+  text-[61px]
+  leading-[60px]
+  text-white
+  mb-40
+  [text-shadow:1px_0_0_white,_-1px_0_0_white,_0_1px_0_white,_0_-1px_0_white]
+`}
+
       >
         From Detection <br /> to Defense.
       </h2>

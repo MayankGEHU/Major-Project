@@ -5,7 +5,7 @@ import RadialOrbitalTimelineDemo from "../RadialOrbitalTimeline/RadialOrbitalTim
 
 const calSans = localFont({
   src: "../../../../public/fonts/Fellix-Medium.ttf",
-  weight: "400",
+  weight: "600",
   style: "normal",
 });
 

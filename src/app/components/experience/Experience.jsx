@@ -9,7 +9,7 @@ import localFont from "next/font/local";
 
 const calSans = localFont({
   src: "../../../../public/fonts/CalSans-Regular.ttf",
-  weight: "400",
+  weight: "600",
   display: "swap",
 });
 
