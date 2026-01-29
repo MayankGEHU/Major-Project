@@ -1,4 +1,5 @@
 "use client";
+
 import { useState, useEffect, useRef } from "react";
 import { ArrowRight, Zap } from "lucide-react";
 import { Badge } from "./Badge";
@@ -6,6 +7,9 @@ import { Button } from "./Button";
 import { Card, CardContent, CardHeader, CardTitle } from "./Card";
 
 export default function RadialOrbitalTimeline({ timelineData }) {
+  /* 🔐 Mount guard (CRITICAL) */
+  const [mounted, setMounted] = useState(false);
+
   const [expandedItems, setExpandedItems] = useState({});
   const [rotationAngle, setRotationAngle] = useState(0);
   const [autoRotate, setAutoRotate] = useState(true);
@@ -15,6 +19,11 @@ export default function RadialOrbitalTimeline({ timelineData }) {
   const containerRef = useRef(null);
   const orbitRef = useRef(null);
   const nodeRefs = useRef({});
+
+  /* ✅ Only render on client */
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const handleContainerClick = (e) => {
     if (e.target === containerRef.current || e.target === orbitRef.current) {
@@ -53,14 +62,17 @@ export default function RadialOrbitalTimeline({ timelineData }) {
     });
   };
 
+  /* 🔄 Auto rotation */
   useEffect(() => {
-    if (!autoRotate) return;
+    if (!autoRotate || !mounted) return;
+
     const timer = setInterval(
       () => setRotationAngle((a) => (a + 0.3) % 360),
       50
     );
+
     return () => clearInterval(timer);
-  }, [autoRotate]);
+  }, [autoRotate, mounted]);
 
   const centerViewOnNode = (id) => {
     const index = timelineData.findIndex((i) => i.id === id);
@@ -68,16 +80,21 @@ export default function RadialOrbitalTimeline({ timelineData }) {
     setRotationAngle(270 - angle);
   };
 
+  /* 🔢 Rounded math = deterministic render */
+  const round = (n) => Math.round(n * 1000) / 1000;
+
   const calculateNodePosition = (index, total) => {
     const angle = ((index / total) * 360 + rotationAngle) % 360;
-    const radius = 160; // ↓ reduced radius
+    const radius = 160;
     const rad = (angle * Math.PI) / 180;
 
     return {
-      x: radius * Math.cos(rad),
-      y: radius * Math.sin(rad),
+      x: round(radius * Math.cos(rad)),
+      y: round(radius * Math.sin(rad)),
       zIndex: Math.round(100 + 50 * Math.cos(rad)),
-      opacity: Math.max(0.45, Math.min(1, 0.5 + 0.5 * Math.sin(rad))),
+      opacity: round(
+        Math.max(0.45, Math.min(1, 0.5 + 0.5 * Math.sin(rad)))
+      ),
     };
   };
 
@@ -91,11 +108,14 @@ export default function RadialOrbitalTimeline({ timelineData }) {
       ? "text-black bg-white border-black"
       : "text-white bg-black/40 border-white/50";
 
+  /* 🚫 Prevent SSR render entirely */
+  if (!mounted) return null;
+
   return (
     <div
       ref={containerRef}
       onClick={handleContainerClick}
-      className="w-full h-[520px] flex items-center justify-center  overflow-hidden"
+      className="w-full h-[520px] flex items-center justify-center overflow-hidden"
     >
       <div className="relative w-full max-w-4xl h-[520px] flex items-center justify-center">
         <div
