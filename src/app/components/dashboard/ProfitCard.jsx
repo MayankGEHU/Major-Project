@@ -9,7 +9,7 @@ export default function ProfitCard() {
   ];
 
   return (
-    <div className="bg-[#111111] p-4 sm:p-5 border border-white/5  rounded-[22px] sm:rounded-[26px] md:rounded-[28px]  flex flex-col gap-3">
+    <div className="bg-[#0b0b0b] p-4 sm:p-5 border border-white/5  rounded-[22px] sm:rounded-[26px] md:rounded-[28px]  flex flex-col gap-3">
       <div>
         <h2 className="text-white text-sm sm:text-base font-medium">
           AI Security Monitor

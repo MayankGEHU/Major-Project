@@ -8,22 +8,22 @@ import IncomeExpenseCard from "./IncomeExpenseCard";
 import ProfitCard from "./ProfitCard";
 import StatsCircleCard from "./StatsCircleCard";
 
+import DetailsOfRisks from "./DetailsOfRisks";
+
 export default function Dashboard() {
   return (
     <div className="min-h-screen bg-black text-white p-3 sm:p-4 md:p-6 flex flex-col">
 
-      {/* Navbar */}
       <div className="flex justify-between items-center mb-4 flex-wrap gap-3">
         <div className="flex gap-2 overflow-x-auto no-scrollbar">
           {["Overview", "Analytics", "Transactions", "Accounts", "Settings"].map(
             (item, i) => (
               <button
                 key={i}
-                className={`px-3 py-2 rounded-xl text-xs sm:text-sm ${
-                  i === 0
+                className={`px-3 py-2 rounded-xl text-xs sm:text-sm ${i === 0
                     ? "bg-white text-black"
                     : "bg-[#1a1a1a] text-gray-300"
-                }`}
+                  }`}
               >
                 {item}
               </button>
@@ -37,7 +37,6 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* Header */}
       <div className="flex justify-between items-center mb-4 flex-wrap gap-3">
         <h1 className="text-xl md:text-2xl font-semibold">
           QuantumSentinel IDS
@@ -61,13 +60,10 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* GRID */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 flex-1">
 
-        {/* LEFT */}
         <AiAssistantCard />
 
-        {/* RIGHT */}
         <div className="lg:col-span-2 grid grid-rows-2 gap-4">
 
           <div className="grid md:grid-cols-2 gap-4">
@@ -81,6 +77,9 @@ export default function Dashboard() {
           </div>
 
         </div>
+      </div>
+      <div className="mt-5">
+        <DetailsOfRisks />
       </div>
     </div>
   );

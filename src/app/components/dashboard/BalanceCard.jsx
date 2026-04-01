@@ -10,17 +10,15 @@ export default function BalanceCard() {
   ];
 
   return (
-    <div className="bg-[#111111] p-4 sm:p-5  border border-white/5 rounded-[22px] sm:rounded-[26px] md:rounded-[28px]  flex flex-col text-white h-full">
+    <div className="bg-[#0b0b0b] p-4 sm:p-5  border border-white/5 rounded-[22px] sm:rounded-[26px] md:rounded-[28px]  flex flex-col text-white h-full">
       
-      {/* HEADER */}
       <div className="flex justify-between items-center">
         <h3 className="text-gray-300 text-sm sm:text-base font-medium">
           Alert Volume
         </h3>
         <div className="text-gray-400 text-lg cursor-pointer">⋮</div>
       </div>
-
-      {/* GRAPH AREA */}
+      
       <div className="flex flex-col justify-end flex-1 mt-6">
         
         <div className="flex items-end gap-3 h-44">

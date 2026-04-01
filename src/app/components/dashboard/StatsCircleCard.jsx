@@ -15,7 +15,6 @@ export default function StatsCircleCard() {
   return (
     <div className="bg-[#0b0b0b] border border-white/5 rounded-[28px]  p-4 w-full relative overflow-hidden">
       
-      {/* Header */}
       <div className="flex justify-between items-center mb-5">
         <h2 className="text-white text-sm font-medium">
           Open alerts by classification
@@ -25,24 +24,20 @@ export default function StatsCircleCard() {
         </div>
       </div>
 
-      {/* Legends */}
       <div className="flex gap-5 text-xs text-white/60 mb-6">
         <Legend color="bg-purple-400" label="Virus" />
         <Legend color="bg-yellow-400" label="Spyware" />
         <Legend color="bg-pink-400" label="Malware" />
       </div>
 
-      {/* Chart */}
       <div className="relative flex items-end justify-between h-[200px] px-2">
         
-        {/* Background ghost bars */}
         <div className="absolute inset-0 flex items-end justify-between px-2">
           {[...Array(24)].map((_, i) => (
             <div key={i} className="w-[6px] bg-white/5 rounded-full h-full" />
           ))}
         </div>
 
-        {/* Bars */}
         {data.map((item, i) => (
           <div
             key={i}
@@ -60,7 +55,6 @@ export default function StatsCircleCard() {
               {item.time}
             </span>
 
-            {/* Tooltip */}
             {hovered === i && (
               <div className="absolute -top-24 bg-[#111] border border-white/10 rounded-xl p-3 text-xs text-white/70 shadow-xl w-[150px] animate-fadeIn">
                 
@@ -80,8 +74,6 @@ export default function StatsCircleCard() {
     </div>
   );
 }
-
-/* 🔹 Components */
 
 const Bar = ({ h, color, active }) => (
   <div
