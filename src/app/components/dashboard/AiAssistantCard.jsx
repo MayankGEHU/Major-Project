@@ -10,10 +10,7 @@ export default function AiAssistantCard() {
     if (!query.trim()) return;
 
     console.log("User Query:", query);
-
-    // 👉 connect your AI / backend here
     alert(`Searching for: ${query}`);
-
     setQuery("");
   };
 
@@ -39,14 +36,14 @@ export default function AiAssistantCard() {
         `}
       </style>
 
-      <div className="bg-[#f3f3f3] text-black rounded-3xl px-5 pt-5 pb-3 w-full max-w-md mx-auto shadow-sm">
+      <div className="bg-[#0b0b0b] text-white rounded-3xl px-5 pt-5 pb-3 w-full max-w-md mx-auto border border-white/5 shadow-sm">
 
         {/* HEADER */}
         <div className="flex items-center gap-3 mb-4">
-          <div className="w-10 h-10 bg-white rounded-2xl flex items-center justify-center shadow-sm">
-            <HiSparkles className="text-blue-500" size={20} />
+          <div className="w-10 h-10 bg-[#1a1a1a] rounded-2xl flex items-center justify-center shadow-sm">
+            <HiSparkles className="text-blue-400" size={20} />
           </div>
-          <h2 className="text-lg font-medium">
+          <h2 className="text-lg font-medium text-gray-200">
             AI Security Assistant
           </h2>
         </div>
@@ -62,7 +59,6 @@ export default function AiAssistantCard() {
         {/* INTERACTIVE INPUT */}
         <div className="relative z-10 mt-10 flex items-center bg-[#2563eb] rounded-2xl px-4 py-2 shadow-md">
 
-          {/* INPUT */}
           <input
             type="text"
             placeholder="Ask Assistant..."
@@ -72,7 +68,6 @@ export default function AiAssistantCard() {
             className="flex-1 bg-transparent outline-none text-white placeholder-white text-sm"
           />
 
-          {/* MIC */}
           <div
             onClick={handleMicClick}
             className={`w-10 h-10 ml-3 rounded-xl flex items-center justify-center text-white cursor-pointer transition 
@@ -83,14 +78,14 @@ export default function AiAssistantCard() {
         </div>
 
         {/* SUMMARY */}
-        <div className="bg-[#eaeaea] mt-3 p-5 rounded-3xl shadow-inner flex flex-col justify-between">
+        <div className="bg-[#111111] mt-3 p-5 rounded-3xl shadow-inner flex flex-col justify-between">
 
           <div>
             <div className="flex justify-between items-center mb-5">
-              <h3 className="text-base font-medium">
+              <h3 className="text-base font-medium text-gray-200">
                 Financial Summary
               </h3>
-              <div className="w-8 h-8 bg-white rounded-xl flex items-center justify-center shadow-sm">
+              <div className="w-8 h-8 bg-[#1a1a1a] rounded-xl flex items-center justify-center shadow-sm text-gray-300">
                 ↗
               </div>
             </div>
@@ -101,9 +96,9 @@ export default function AiAssistantCard() {
                 { label: "Total Expenses", value: "$92,150", tag: "+3% YoY" },
                 { label: "Net Savings", value: "$36,250", tag: "Growth" },
               ].map((item, i) => (
-                <div key={i} className="bg-[#dddddd] py-5 px-3 rounded-2xl text-center">
-                  <p className="text-xs text-gray-500 mb-1">{item.label}</p>
-                  <p className="text-base font-semibold">{item.value}</p>
+                <div key={i} className="bg-[#1a1a1a] py-5 px-3 rounded-2xl text-center">
+                  <p className="text-xs text-gray-400 mb-1">{item.label}</p>
+                  <p className="text-base font-semibold text-white">{item.value}</p>
                   <div className="mt-3 bg-black text-white text-[11px] px-3 py-[5px] rounded-full inline-block">
                     {item.tag}
                   </div>
@@ -112,8 +107,8 @@ export default function AiAssistantCard() {
             </div>
           </div>
 
-          <div className="bg-[#f1f1f1] mt-5 p-4 rounded-2xl">
-            <p className="text-sm text-gray-600 leading-relaxed">
+          <div className="bg-[#181818] mt-5 p-4 rounded-2xl">
+            <p className="text-sm text-gray-400 leading-relaxed">
               Overall financial health improved by 6% year-over-year. Expense growth is controlled, while income streams remain stable.
             </p>
           </div>
