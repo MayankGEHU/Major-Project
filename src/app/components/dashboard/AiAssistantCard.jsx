@@ -120,8 +120,8 @@ export default function AiAssistantCard() {
           <div
             onClick={handleMicClick}
             className={`w-10 h-10 ml-3 rounded-xl flex items-center justify-center cursor-pointer transition
-              ${listening 
-                ? "bg-red-500/80 scale-110" 
+              ${listening
+                ? "bg-red-500/80 scale-110"
                 : "bg-white/10 backdrop-blur-md border border-white/10"}
             `}
           >
@@ -149,7 +149,7 @@ export default function AiAssistantCard() {
 
             <div className="grid grid-cols-3 gap-3">
               {[
-                      { label: "Threats Detected", value: "3,548", tag: "High" },
+                { label: "Threats Detected", value: "3,548", tag: "High" },
                 { label: "Packets Analyzed", value: "1.2M", tag: "Real-time" },
                 { label: "Blocked Attacks", value: "1,938", tag: "Auto Mitigated" },
               ].map((item, i) => (
@@ -173,9 +173,9 @@ export default function AiAssistantCard() {
           </div>
 
           <div className="bg-white/5 backdrop-blur-md mt-5 p-4 rounded-2xl border border-white/10">
- <p className="text-sm text-gray-300">
-  AI-powered IDS achieved <span className="text-green-400 font-semibold">96.7% accuracy</span> with real-time TCP-based threat detection.
-</p>
+            <p className="text-sm text-gray-300">
+              AI-powered IDS achieved <span className="text-green-400 font-semibold">96.7% accuracy</span> with real-time TCP-based threat detection.
+            </p>
           </div>
 
         </div>

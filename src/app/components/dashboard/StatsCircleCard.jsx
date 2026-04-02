@@ -30,7 +30,6 @@ export default function StatsCircleCard() {
         <Legend color="bg-pink-400" label="Malware" />
       </div>
 
-      {/* CHANGED: added pb-1 */}
       <div className="relative flex items-end justify-between h-[200px] px-2 pb-1">
         
         <div className="absolute inset-0 flex items-end justify-between px-2">
@@ -52,7 +51,6 @@ export default function StatsCircleCard() {
               <Bar h={item.malware} color="bg-pink-400" active={hovered === i} />
             </div>
 
-            {/* CHANGED: mt reduced */}
             <span className="text-[10px] text-white/40 mt-[2px]">
               {item.time}
             </span>
