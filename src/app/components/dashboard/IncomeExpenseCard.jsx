@@ -1,5 +1,5 @@
 const glassCard =
-  "rounded-[28px] border border-white/10 bg-[#0b0b0b] backdrop-blur-xl shadow-inner";
+  "rounded-[28px] bg-white/5 backdrop-blur-xl border border-white/10 shadow-[inset_0_0_20px_rgba(255,255,255,0.05)]";
 
 export default function IncomeExpenseCard() {
   const barData = [45, 75, 50, 65, 40, 60, 30, 48, 72];

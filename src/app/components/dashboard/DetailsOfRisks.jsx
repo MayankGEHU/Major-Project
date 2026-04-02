@@ -64,7 +64,7 @@ export default function DetailsOfRisks() {
     "grid-cols-[2fr_1fr_1fr_1.2fr_2fr_1.5fr_0.7fr]";
 
   return (
-    <div className="w-full rounded-[28px] border border-white/10 bg-[#0b0b10]/90 backdrop-blur-xl p-4 sm:p-8 text-white shadow-2xl">
+    <div className="w-full rounded-[28px] bg-white/5 backdrop-blur-xl border border-white/10 shadow-[inset_0_0_20px_rgba(255,255,255,0.05)] backdrop-blur-xl p-4 sm:p-8 text-white ">
 
       <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-4 mb-6">
         <h2 className="text-lg sm:text-xl font-medium">
@@ -92,7 +92,7 @@ export default function DetailsOfRisks() {
           <div>Title</div>
           <div>Time</div>
           <div>Date</div>
-          <div>Source</div>
+          <div>Source IP</div>
           <div>Prevention</div>
           <div>Risk</div>
           <div className="text-right pr-4">Action</div>

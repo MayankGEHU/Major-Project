@@ -13,7 +13,7 @@ export default function StatsCircleCard() {
   ];
 
   return (
-    <div className="bg-[#0b0b0b] border border-white/5 rounded-[28px]  p-4 w-full relative overflow-hidden">
+    <div className="bg-white/5 backdrop-blur-xl border border-white/10 shadow-[inset_0_0_20px_rgba(255,255,255,0.05)] rounded-[28px] p-4 w-full relative overflow-hidden">
       
       <div className="flex justify-between items-center mb-5">
         <h2 className="text-white text-sm font-medium">
@@ -30,7 +30,8 @@ export default function StatsCircleCard() {
         <Legend color="bg-pink-400" label="Malware" />
       </div>
 
-      <div className="relative flex items-end justify-between h-[200px] px-2">
+      {/* CHANGED: added pb-1 */}
+      <div className="relative flex items-end justify-between h-[200px] px-2 pb-1">
         
         <div className="absolute inset-0 flex items-end justify-between px-2">
           {[...Array(24)].map((_, i) => (
@@ -51,7 +52,8 @@ export default function StatsCircleCard() {
               <Bar h={item.malware} color="bg-pink-400" active={hovered === i} />
             </div>
 
-            <span className="text-[10px] text-white/40 mt-2">
+            {/* CHANGED: mt reduced */}
+            <span className="text-[10px] text-white/40 mt-[2px]">
               {item.time}
             </span>
 
