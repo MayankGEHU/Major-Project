@@ -1,3 +1,4 @@
+"use client"
 import { useState, useEffect, useRef } from "react";
 import { FaMicrophone } from "react-icons/fa";
 import { HiSparkles } from "react-icons/hi";
@@ -8,7 +9,7 @@ function Sphere3D() {
 
   useEffect(() => {
     if (!mountRef.current) return;
-
+    if (mountRef.current.childNodes.length > 0) return;
     const width = 350;
     const height = 350;
 
