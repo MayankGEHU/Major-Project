@@ -10,6 +10,8 @@ import StatsCircleCard from "./StatsCircleCard";
 
 import DetailsOfRisks from "./DetailsOfRisks";
 
+import { generateReport } from "../../../utils/generateReport";
+
 export default function Dashboard() {
   return (
     <div className="min-h-screen bg-black text-white p-3 sm:p-4 md:p-6 flex flex-col">
@@ -54,9 +56,12 @@ export default function Dashboard() {
             01 Jan 2025 - 31 Dec 2025
           </button>
 
-          <button className="bg-[#1a1a1a] px-3 py-2 rounded-lg text-xs">
-            Generate Report
-          </button>
+ <button
+  onClick={generateReport}
+  className="bg-[#1a1a1a] px-3 py-2 rounded-lg text-xs"
+>
+  Generate Report
+</button>
         </div>
       </div>
 
