@@ -45,7 +45,7 @@ export default function Page() {
         <Features />
       </section>
 
-      <Protect />
+      {/* <Protect /> */}
 
       <section id="quality">
         <OurQuality />
