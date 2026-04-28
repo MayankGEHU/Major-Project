@@ -48,7 +48,7 @@ export default function Hero() {
               mb-5 sm:mb-6
             `}
           >
-            QuantumSentinel
+            Gen AI Based IDS
           </h1>
 
           <p className="text-[15px] sm:text-[16px] md:text-[19px] leading-[28px] md:leading-[34px] text-[rgb(185,185,185)] mb-8 sm:mb-12">

@@ -28,7 +28,7 @@ export default function Footer() {
           <h1
             className={`${freshmanFont.className} text-[10vw] leading-none tracking-tight text-center`}
           >
-            QuantumSentinel
+            Gen AI Based IDS
           </h1>
         </div>
 

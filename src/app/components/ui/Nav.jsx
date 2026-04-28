@@ -120,7 +120,7 @@ export default function Nav() {
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         
         <h1 className="text-lg font-semibold">
-          QuantumSentinel IDS
+          Gen AI Based IDS
         </h1>
 
         <div className="hidden md:flex items-center gap-8 text-sm font-medium">

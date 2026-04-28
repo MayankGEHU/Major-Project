@@ -6,7 +6,7 @@ import localFont from "next/font/local";
 
 
 const calSans = localFont({
-  src: "../../../../public/fonts/CalSans-Regular.ttf", 
+  src: "../../../../public/fonts/CalSans-Regular.ttf",
   weight: "600",
   display: "swap",
 });
@@ -45,7 +45,6 @@ export default function About() {
   const ref = useRef(null);
 
   const text = [
-    "QuantumSentinel",
     "GenAI",
     "Intrusion",
     "Detection",
