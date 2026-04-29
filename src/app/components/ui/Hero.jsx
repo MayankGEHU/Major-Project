@@ -1,11 +1,7 @@
-
 "use client";
 import Link from "next/link";
 import { Geist } from "next/font/google";
-import GetStatButton from "./herobuttons/GetStatButton";
-import LearnMoreButton from "./herobuttons/LearnMoreButton";
-
-import PageTransition from "../transition/PageTransition";
+import { motion } from "framer-motion";
 
 const geist = Geist({
   subsets: ["latin"],
@@ -14,7 +10,7 @@ const geist = Geist({
 
 export default function Hero() {
   return (
-          <section className="relative min-h-screen flex items-center text-white overflow-hidden">
+    <section className="relative min-h-screen flex items-center text-white overflow-hidden">
       
       <video
         className="
@@ -35,7 +31,10 @@ export default function Hero() {
       <div className="relative z-20 w-full max-w-7xl px-5 sm:px-6 md:px-12 pt-24 sm:pt-28 pb-20 sm:pb-24">
         <div className="max-w-[620px]">
           
-          <h1
+          <motion.h1
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
             className={`
               ${geist.className}
               text-[32px]
@@ -48,19 +47,29 @@ export default function Hero() {
               mb-5 sm:mb-6
             `}
           >
-            QuantumSentinel
-          </h1>
+            Gen AI Based IDS
+          </motion.h1>
 
-          <p className="text-[15px] sm:text-[16px] md:text-[19px] leading-[28px] md:leading-[34px] text-[rgb(185,185,185)] mb-8 sm:mb-12">
+          <motion.p
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.2, ease: "easeOut" }}
+            className="text-[15px] sm:text-[16px] md:text-[19px] leading-[28px] md:leading-[34px] text-[rgb(185,185,185)] mb-8 sm:mb-12"
+          >
             Used by next-generation cyber platforms, this system enables you to
             detect{" "}
             <span className="text-blue font-semibold">
               real-time security threats
             </span>{" "}
             with adaptive intelligence powered by Generative AI.
-          </p>
+          </motion.p>
 
-          <div className="flex flex-row sm:flex-row items-center gap-3 sm:gap-6">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
+            className="flex flex-row sm:flex-row items-center gap-3 sm:gap-6"
+          >
             <Link
               href="/mlmodel"
               className="
@@ -80,8 +89,6 @@ export default function Hero() {
               Get Started
             </Link>
 
-            {/* <GetStatButton/> */}
-
             <Link
               href="/learn"
               className="
@@ -100,17 +107,20 @@ export default function Hero() {
             >
               Learn More
             </Link>
+          </motion.div>
 
-            {/* <LearnMoreButton/> */}
-          </div>
-
-          <p className="text-gray-400 mt-6 text-sm flex items-center gap-2">
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.6 }}
+            className="text-gray-400 mt-6 text-sm flex items-center gap-2"
+          >
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-800 opacity-70"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-800"></span>
             </span>
             Powered by Generative Intelligence
-          </p>
+          </motion.p>
 
         </div>
       </div>

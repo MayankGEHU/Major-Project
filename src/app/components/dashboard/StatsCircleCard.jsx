@@ -103,12 +103,15 @@ export default function StatsCircleCard({ stats, topAttacks = [], recentAlerts =
   }));
 
   return (
-    <div className="bg-white/5 backdrop-blur-xl border border-white/10 shadow-[inset_0_0_20px_rgba(255,255,255,0.05)] rounded-[28px] px-4 pt-4 pb-3 w-full flex flex-col h-full">
+    <div className="bg-white/5 backdrop-blur-xl border border-white/10 shadow-[inset_0_0_20px_rgba(255,255,255,0.05)] rounded-[28px] p-4 w-full relative overflow-hidden">
 
-      {/* ── Header ── */}
-      <div className="flex justify-between items-center mb-3">
-        <h2 className="text-white text-sm font-medium">Open alerts by classification</h2>
-        <div className="text-xs text-white/60 bg-white/5 px-3 py-1 rounded-full">Today</div>
+      <div className="flex justify-between items-center mb-5">
+        <h2 className="text-white text-sm font-medium">
+          Open alerts by classification
+        </h2>
+        <div className="text-xs text-white/60 bg-white/5 px-3 py-1 rounded-full">
+          Today
+        </div>
       </div>
 
       {/* ── Severity badges ── */}
@@ -139,13 +142,11 @@ export default function StatsCircleCard({ stats, topAttacks = [], recentAlerts =
         ))}
       </div>
 
-      {/* ── Bar chart — flex-1 fills remaining card height ── */}
-      <div className="flex-1 relative min-h-[100px]">
+      <div className="relative flex items-end justify-between h-[200px] px-2 pb-1">
 
-        {/* Background tracks */}
-        <div className="absolute inset-0 flex justify-between px-1">
-          {[...Array(20)].map((_, i) => (
-            <div key={i} className="w-[5px] bg-white/[0.035] rounded-full" />
+        <div className="absolute inset-0 flex items-end justify-between px-2">
+          {[...Array(24)].map((_, i) => (
+            <div key={i} className="w-[6px] bg-white/5 rounded-full h-full" />
           ))}
         </div>
 
@@ -178,22 +179,12 @@ export default function StatsCircleCard({ stats, topAttacks = [], recentAlerts =
                 {slot.time}
               </span>
 
-              {/* Hover tooltip */}
-              {hovered === i && (
-                <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 bg-[#111] border border-white/10 rounded-xl p-2.5 text-[10px] text-white/70 shadow-xl w-[130px] z-20 pointer-events-none">
-                  <p className="text-white/80 font-medium mb-1.5">{slot.time}</p>
-                  {slot.bars.map((bar, bi) => (
-                    <div key={bi} className="flex justify-between items-center mb-1">
-                      <span className="flex items-center gap-1.5">
-                        <span
-                          className="w-1.5 h-1.5 rounded-full shrink-0"
-                          style={{ background: HEX[bi % 3] }}
-                        />
-                        <span className="truncate max-w-[65px]">{bar.name}</span>
-                      </span>
-                      <span className="text-white/60">{bar.h}</span>
-                    </div>
-                  ))}
+            {hovered === i && (
+              <div className="absolute -top-24 bg-[#111] border border-white/10 rounded-xl p-3 text-xs text-white/70 shadow-xl w-[150px] animate-fadeIn">
+
+                <div className="flex justify-between mb-2 text-white/80">
+                  <span>12 May</span>
+                  <span>{item.time}</span>
                 </div>
               )}
             </div>
@@ -204,3 +195,28 @@ export default function StatsCircleCard({ stats, topAttacks = [], recentAlerts =
     </div>
   );
 }
+
+const Bar = ({ h, color, active }) => (
+  <div
+    className={`w-[6px] ${color} rounded-full transition-all duration-300 ${active ? "opacity-100 scale-110" : "opacity-70"
+      }`}
+    style={{ height: `${h * 2}px` }}
+  />
+);
+
+const Legend = ({ color, label }) => (
+  <div className="flex items-center gap-2">
+    <span className={`w-2 h-2 ${color} rounded-full`} />
+    {label}
+  </div>
+);
+
+const TooltipRow = ({ color, label, value }) => (
+  <div className="flex justify-between mb-1">
+    <span className="flex items-center gap-2">
+      <span className={`w-2 h-2 ${color} rounded-full`} />
+      {label}
+    </span>
+    <span>{value}%</span>
+  </div>
+);

@@ -10,11 +10,10 @@ const RiskBar = ({ value }) => {
       {Array.from({ length: segments }).map((_, i) => (
         <div
           key={i}
-          className={`h-2 w-3 rounded-sm ${
-            i < active
+          className={`h-2 w-3 rounded-sm ${i < active
               ? "bg-gradient-to-r from-purple-400 to-indigo-500"
               : "bg-white/10"
-          }`}
+            }`}
         />
       ))}
     </div>

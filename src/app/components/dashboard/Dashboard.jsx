@@ -136,12 +136,19 @@ export default function Dashboard() {
       {/* ── Nav ── */}
       <div className="flex justify-between items-center mb-4 flex-wrap gap-3">
         <div className="flex gap-2 overflow-x-auto no-scrollbar">
-          {["Overview","Analytics","Transactions","Accounts","Settings"].map((item, i) => (
-            <button key={i}
-              className={`px-3 py-2 rounded-xl text-xs sm:text-sm ${
-                i === 0 ? "bg-white text-black" : "bg-[#1a1a1a] text-gray-300"
-              }`}>{item}</button>
-          ))}
+          {["Overview", "Analytics", "Transactions", "Accounts", "Settings"].map(
+            (item, i) => (
+              <button
+                key={i}
+                className={`px-3 py-2 rounded-xl text-xs sm:text-sm ${i === 0
+                  ? "bg-white text-black"
+                  : "bg-[#1a1a1a] text-gray-300"
+                  }`}
+              >
+                {item}
+              </button>
+            )
+          )}
         </div>
         <div className="flex items-center gap-3">
           <Bell size={18} />
@@ -168,9 +175,14 @@ export default function Dashboard() {
               <ChevronDown size={12} className={`text-white/40 transition-transform ${pickerOpen ? "rotate-180" : ""}`} />
             </button>
 
-            {pickerOpen && (
-              <div className="absolute right-0 top-full mt-2 z-50 bg-[#111] border border-white/10 rounded-2xl p-4 shadow-2xl w-[300px]">
-                <p className="text-xs text-white/50 mb-3 font-medium">Select date range</p>
+          <button
+            onClick={generateReport}
+            className="bg-[#1a1a1a] px-3 py-2 rounded-lg text-xs"
+          >
+            Generate Report
+          </button>
+        </div>
+      </div>
 
                 <div className="flex flex-col gap-3">
                   <div>
