@@ -69,9 +69,22 @@ function Sphere3D() {
   return <div ref={mountRef} />;
 }
 
-export default function AiAssistantCard() {
+export default function AiAssistantCard({ stats }) {
   const [query, setQuery] = useState("");
   const [listening, setListening] = useState(false);
+
+  const fmt = (n) => {
+    if (n == null) return "–";
+    if (n >= 1_000_000) return (n / 1_000_000).toFixed(1) + "M";
+    if (n >= 1_000)     return (n / 1_000).toFixed(1) + "K";
+    return n.toLocaleString();
+  };
+
+  const metrics = [
+    { label: "Threats Detected",  value: fmt(stats?.total_threats),    tag: "High" },
+    { label: "Packets Analyzed",  value: fmt(stats?.total_detections),  tag: "Real-time" },
+    { label: "Blocked Attacks",   value: fmt((stats?.critical_count ?? 0) + (stats?.high_count ?? 0)), tag: "Auto Mitigated" },
+  ];
 
   const handleSearch = () => {
     if (!query.trim()) return;
@@ -149,11 +162,7 @@ export default function AiAssistantCard() {
             </div>
 
             <div className="grid grid-cols-3 gap-3">
-              {[
-                { label: "Threats Detected", value: "3,548", tag: "High" },
-                { label: "Packets Analyzed", value: "1.2M", tag: "Real-time" },
-                { label: "Blocked Attacks", value: "1,938", tag: "Auto Mitigated" },
-              ].map((item, i) => (
+              {metrics.map((item, i) => (
                 <div
                   key={i}
                   className="

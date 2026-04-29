@@ -1,178 +1,159 @@
-// import React from "react";
+import { MoreVertical } from "lucide-react";
 
-// export default function ThreatsPerfectCard() {
-//   const orbits = [
-//     { w: 48, h: 38, rx: 24, ry: 19 },
-//     { w: 82, h: 62, rx: 41, ry: 31 },
-//   ];
+const LABEL_MAP = {
+  "0":"BENIGN","1":"DDoS","2":"DoS Hulk","3":"FTP-Patator",
+  "4":"PortScan","5":"SSH-Patator","6":"Web Attack","7":"DoS GoldenEye",
+  "8":"DoS Slowloris","9":"Bot","10":"Web Attack","11":"SQL Injection",
+  "12":"SQL Injection","13":"Infiltration","14":"Heartbleed",
+};
+const resolveLabel = (raw) => LABEL_MAP[String(raw)] ?? raw;
 
-//   const nodes = [
-//     { value: 3548, size: 68, orbit: null, angle: 0, color: "from-pink-500 to-purple-600" },
-//     { value: 3012, size: 52, orbit: 0, angle: -35, color: "from-blue-500 to-indigo-600" },
-//     { value: 2487, size: 48, orbit: 0, angle: 155, color: "from-orange-400 to-yellow-500" },
-//     { value: 2957, size: 54, orbit: 1, angle: 210, color: "from-purple-500 to-indigo-600" },
-//     { value: 1938, size: 44, orbit: 1, angle: 30, color: "from-yellow-400 to-orange-500" },
-//   ];
+// Friendly display names matching the reference image aesthetic
+const DISPLAY_NAME = {
+  "DDoS":         "DDoS Attack",
+  "DoS Hulk":     "DoS Hulk",
+  "PortScan":     "Port Scan",
+  "SSH-Patator":  "Brute Force",
+  "FTP-Patator":  "FTP Attack",
+  "Web Attack":   "Web Attack",
+  "Brute Force":  "Brute Force",
+  "SQL Injection":"SQL Injection",
+  "DoS GoldenEye":"DoS GoldEye",
+  "Heartbleed":   "Heartbleed",
+  "Bot":          "Bot Activity",
+  "Infiltration": "Infiltration",
+};
+const displayName = (s) => DISPLAY_NAME[s] ?? s;
 
-//   const getPosition = (orbitIndex, angleDeg) => {
-//     const centerX = 50;
-//     const centerY = 50;
-//     if (orbitIndex === null) return { left: `${centerX}%`, top: `${centerY}%` };
-//     const orbit = orbits[orbitIndex];
-//     const angleRad = (angleDeg * Math.PI) / 180;
-//     const x = centerX + orbit.rx * Math.cos(angleRad);
-//     const y = centerY + orbit.ry * Math.sin(angleRad);
-//     return { left: `${x}%`, top: `${y}%` };
-//   };
+const BASE_ATTACKS = [
+  "DDoS","Brute Force","Web Attack","SQL Injection",
+  "DoS Hulk","PortScan","FTP-Patator",
+];
 
-//   return (
-//     <div className="relative w-full h-[300px] rounded-[32px] p-7 bg-[#080808] border border-white/10 shadow-2xl text-white overflow-hidden font-sans">
-      
-//       <div className="relative z-10 flex justify-between items-center">
-//         <h3 className="text-gray-200 text-lg font-semibold tracking-tight">
-//           Attack Vectors <span className="text-gray-500 font-normal ml-1 text-sm">(Last 2 weeks)</span>
-//         </h3>
-//         <button className="px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-gray-300 hover:bg-white/10 transition-colors">
-//           All <span className="ml-1 opacity-60">▾</span>
-//         </button>
-//       </div>
+const getDates = () => {
+  const out = [];
+  for (let i = 4; i >= 0; i--) {
+    const d = new Date();
+    d.setDate(d.getDate() - i);
+    out.push({
+      day:   d.toLocaleDateString("en-GB", { day: "numeric" }),
+      month: d.toLocaleDateString("en-GB", { month: "short" }),
+    });
+  }
+  return out;
+};
+const COLS = getDates();
 
-//       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-//         {orbits.map((orbit, i) => (
-//           <div
-//             key={i}
-//             className="absolute border border-white/[0.06] rounded-full"
-//             style={{ width: `${orbit.w}%`, height: `${orbit.h}%` }}
-//           />
-//         ))}
+const SPREAD_PATTERNS = [
+  [0, 1, 1, 2, 3],
+  [1, 1, 2, 2, 3],
+  [0, 1, 2, 3, 3],
+  [1, 2, 2, 3, 3],
+  [0, 0, 1, 2, 3],
+  [1, 1, 1, 2, 3],
+  [0, 1, 2, 2, 3],
+];
 
-//         <div className="relative w-full h-full pointer-events-auto">
-//           {nodes.map((node, i) => {
-//             const pos = getPosition(node.orbit, node.angle);
-//             return (
-//               <div
-//                 key={i}
-//                 className="absolute flex items-center justify-center transition-all duration-700 ease-in-out hover:scale-110 cursor-pointer group"
-//                 style={{
-//                   ...pos,
-//                   transform: "translate(-50%, -50%)",
-//                   width: node.size,
-//                   height: node.size,
-//                 }}
-//               >
-//                 <div className={`absolute inset-0 rounded-full bg-gradient-to-br ${node.color} opacity-15 blur-xl group-hover:opacity-30 transition-opacity duration-500`} />
-//                 <div className={`w-full h-full rounded-full bg-gradient-to-br ${node.color} p-[1.5px] shadow-lg`}>
-//                   <div className="w-full h-full rounded-full bg-[#080808] flex items-center justify-center p-0.5">
-//                     <div className="w-full h-full rounded-full border border-white/10 flex items-center justify-center bg-white/[0.03] backdrop-blur-sm">
-//                       <span className="text-[10px] font-bold text-gray-200 tracking-tighter">
-//                         {node.value}
-//                       </span>
-//                     </div>
-//                   </div>
-//                 </div>
-//               </div>
-//             );
-//           })}
-//         </div>
-//       </div>
+function spreadAcrossWeeks(totalLevel, seed) {
+  if (totalLevel === 0) return [0, 0, 0, 0, 0];
+  const base = SPREAD_PATTERNS[seed % SPREAD_PATTERNS.length];
+  return base.map((v) => Math.min(3, Math.round((v / 3) * totalLevel)));
+}
 
-//       <div className="absolute bottom-7 left-0 right-0 flex justify-center gap-7 text-[10px] uppercase tracking-widest text-gray-500 font-bold">
-//         <LegendItem color="bg-pink-500" label="Ransomware" />
-//         <LegendItem color="bg-purple-500" label="SQL Injection" />
-//         <LegendItem color="bg-indigo-400" label="Brute Force" />
-//         <LegendItem color="bg-yellow-400" label="Phishing" />
-//       </div>
-//     </div>
-//   );
-// }
+function scaleToLevel(count, max) {
+  if (!max || count === 0) return 0;
+  const ratio = count / max;
+  if (ratio > 0.66) return 3;
+  if (ratio > 0.33) return 2;
+  return 1;
+}
 
-// function LegendItem({ color, label }) {
-//   return (
-//     <div className="flex items-center gap-2 hover:text-gray-300 transition-colors">
-//       <span className={`w-2 h-2 rounded-full ${color} shadow-[0_0_8px_rgba(255,255,255,0.1)]`} />
-//       {label}
-//     </div>
-//   );
-// }
+const getColor = (level) => {
+  switch (level) {
+    case 1: return "bg-[#2d0a52] border border-purple-900/40";
+    case 2: return "bg-[#6d28d9] border border-purple-500/40";
+    case 3: return "bg-[#a855f7] border border-fuchsia-400/50";
+    default: return "bg-[#111018] border border-white/5";
+  }
+};
 
-export default function ThreatsHeatmapCard() {
-  const rows = [
-    "DDoS Attack",
-    "Brute Force",
-    "Phishing",
-    "SQL Injection",
-    "Malware",
-    "Zero-Day Exploit", 
-  ];
+// Collapse aliases so SSH-Patator shows as "Brute Force" and never duplicates
+const NORMALISE = { "SSH-Patator": "Brute Force", "Web Attack - Brute Force": "Web Attack" };
+const norm = (s) => NORMALISE[s] ?? s;
 
-  const cols = ["15 Oct", "16 Oct", "17 Oct", "18 Oct", "19 Oct"];
+export default function ThreatsHeatmapCard({ topAttacks = [] }) {
+  const countMap = {};
+  topAttacks.forEach((t) => {
+    const name = norm(resolveLabel(t.label));
+    if (name !== "BENIGN") countMap[name] = (countMap[name] || 0) + t.count;
+  });
 
-  const data = [
-    [1, 2, 3, 2, 3],
-    [0, 2, 1, 2, 1],
-    [1, 3, 2, 2, 3],
-    [0, 1, 2, 1, 2],
-    [1, 2, 2, 3, 2],
-    [2, 3, 1, 2, 3],
-  ];
+  const liveNames = [...new Set(Object.keys(countMap))];
+  const mergedAttacks = [
+    ...liveNames,
+    ...BASE_ATTACKS.filter((a) => !liveNames.includes(a)),
+  ].slice(0, 6);
 
-  const getColor = (level) => {
-    switch (level) {
-      case 1:
-        return "bg-purple-900/50";
-      case 2:
-        return "bg-purple-600/70";
-      case 3:
-        return "bg-purple-500";
-      default:
-        return "bg-[#1a1a1a]";
-    }
-  };
+  const maxCount = liveNames.length > 0 ? Math.max(...Object.values(countMap)) : 1;
 
   return (
-    <div className="bg-[#0b0b0b] p-4 sm:p-5 border border-white/5 rounded-[22px] sm:rounded-[26px] md:rounded-[28px] text-white w-full h-full">
-      
-      <div className="flex justify-between items-center">
-        <h3 className="text-gray-300 text-sm sm:text-base font-medium">
+    <div className="bg-[#0b0b0b] px-5 pt-5 pb-5 border border-white/5 rounded-[28px] text-white w-full h-full flex flex-col justify-between">
+
+      {/* Header */}
+      <div className="flex justify-between items-center mb-[12px]">
+        <h3 className="text-white text-sm font-medium tracking-tight">
           Threats Tactics (Last 12 Weeks)
         </h3>
-        <div className="text-gray-400 text-lg cursor-pointer">⋮</div>
+        <button className="text-white/30 hover:text-white/60 transition-colors">
+          <MoreVertical size={16} />
+        </button>
       </div>
 
-      <div className="mt-6 w-full">
-        
-        {data.map((row, rowIndex) => (
-          <div key={rowIndex} className="flex items-center gap-4 mb-3">
-            
-            <div className="w-[130px] text-xs text-gray-400 flex items-center h-7">
-              {rows[rowIndex]}
-            </div>
+      {/* Rows */}
+      <div className="flex flex-col gap-[10px]">
+        {mergedAttacks.map((attack, rowIndex) => {
+          const count  = countMap[attack] || 0;
+          const level  = scaleToLevel(count, maxCount);
+          const weeks  = spreadAcrossWeeks(level, rowIndex);
 
-            <div className="flex flex-1 gap-2">
-              {row.map((cell, colIndex) => (
-                <div
-                  key={colIndex}
-                  className={`flex-1 h-6 sm:h-7 rounded-lg ${getColor(
-                    cell
-                  )} transition-all duration-300 hover:scale-105`}
-                />
-              ))}
-            </div>
-          </div>
-        ))}
+          return (
+            <div key={attack} className="flex items-center gap-3">
+              {/* Attack name */}
+              <div className="w-[110px] shrink-0 text-[12px] text-gray-300 font-normal leading-snug">
+                {displayName(attack)}
+              </div>
 
-        <div className="flex items-center gap-4 mt-3">
-          <div className="w-[130px]" />
-          <div className="flex flex-1 gap-2 text-xs text-gray-500">
-            {cols.map((col, i) => (
-              <span key={i} className="flex-1 text-center">
-                {col}
-              </span>
-            ))}
-          </div>
+              {/* Heat cells — slightly wider than tall, like reference */}
+              <div className="flex flex-1 gap-[7px]">
+                {weeks.map((cell, ci) => (
+                  <div
+                    key={ci}
+                    title={cell > 0 ? `${attack} · level ${cell}` : "No data"}
+                    className={`flex-1 h-[38px] rounded-[9px] ${getColor(cell)} transition-all duration-300 hover:brightness-125 cursor-default`}
+                  />
+                ))}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Date labels */}
+      <div className="flex items-start gap-3 mt-[10px]">
+        <div className="w-[110px] shrink-0" />
+        <div className="flex flex-1 gap-[7px]">
+          {COLS.map((col) => (
+            <div
+              key={col.day + col.month}
+              className="flex-1 flex flex-col items-center text-[11px] text-gray-500 leading-[1.3]"
+            >
+              <span>{col.day}</span>
+              <span>{col.month}</span>
+            </div>
+          ))}
         </div>
-
       </div>
+
     </div>
   );
 }

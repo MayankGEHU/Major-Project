@@ -1,36 +1,100 @@
-const glassCard =
-  "rounded-[28px] bg-white/5 backdrop-blur-xl border border-white/10 shadow-[inset_0_0_20px_rgba(255,255,255,0.05)]";
+// ── Identical LABEL_MAP + normalisation to BalanceCard ─────────────────────────
+const LABEL_MAP = {
+  "0":"BENIGN","1":"DDoS","2":"DoS Hulk","3":"FTP-Patator",
+  "4":"PortScan","5":"SSH-Patator","6":"Web Attack","7":"DoS GoldenEye",
+  "8":"DoS Slowloris","9":"Bot","10":"Web Attack","11":"SQL Injection",
+  "12":"SQL Injection","13":"Infiltration","14":"Heartbleed",
+};
+const resolveLabel = (raw) => LABEL_MAP[String(raw)] ?? raw;
 
-export default function IncomeExpenseCard() {
-  const barData = [45, 75, 50, 65, 40, 60, 30, 48, 72];
+// Same alias collapse as BalanceCard — prevents any duplicate labels
+const NORMALISE = { "SSH-Patator": "Brute Force", "Web Attack - Brute Force": "Web Attack" };
+const norm = (s) => NORMALISE[s] ?? s;
+
+// Same BASE_ATTACKS order as BalanceCard
+const BASE_ATTACKS = [
+  "DDoS","Brute Force","Web Attack","SQL Injection",
+  "DoS Hulk","PortScan","FTP-Patator",
+];
+
+// Short labels for bar x-axis
+const SHORT_LABEL = {
+  "DDoS":          "DDoS",
+  "Brute Force":   "Brute",
+  "Web Attack":    "Web",
+  "SQL Injection": "SQL",
+  "DoS Hulk":      "Hulk",
+  "PortScan":      "PScan",
+  "FTP-Patator":   "FTP",
+  "DoS GoldenEye": "GoldE",
+  "DoS Slowloris": "Slow",
+  "Bot":           "Bot",
+  "Infiltration":  "Infil",
+  "Heartbleed":    "HBled",
+};
+const shorten = (s) => SHORT_LABEL[s] ?? (s.length > 6 ? s.slice(0, 5) + "…" : s);
+
+const FALLBACK_HEIGHTS = [88, 55, 67, 42, 78, 50, 35];
+
+export default function IncomeExpenseCard({ topAttacks = [] }) {
+  // ── Build countMap with same normalisation as BalanceCard ──────────────────
+  const countMap = {};
+  topAttacks.forEach((t) => {
+    const label = norm(resolveLabel(t.label));
+    if (label !== "BENIGN") countMap[label] = (countMap[label] || 0) + t.count;
+  });
+
+  const liveNames = [...new Set(Object.keys(countMap))];
+  const hasLive   = liveNames.length > 0;
+
+  // ── Exact same merge as BalanceCard → identical 6 attacks, same order ──────
+  const mergedAttacks = [
+    ...liveNames,
+    ...BASE_ATTACKS.filter((a) => !liveNames.includes(a)),
+  ].slice(0, 6);   // ← 6 to match BalanceCard
+
+  const maxCount = hasLive ? Math.max(...Object.values(countMap)) : 1;
+
+  const bars = mergedAttacks.map((label, i) => ({
+    label: shorten(label),
+    value: hasLive
+      ? Math.max(20, Math.round(((countMap[label] || 0) / maxCount) * 92))
+      : FALLBACK_HEIGHTS[i] ?? 50,
+  }));
 
   return (
-    <div className={`${glassCard} p-2 overflow-hidden relative`}>
-      <h3 className="font-medium mb-6">Top Active Ports</h3>
+    <div className="rounded-[28px] bg-white/5 backdrop-blur-xl border border-white/10
+      shadow-[inset_0_0_20px_rgba(255,255,255,0.05)] px-5 pt-5 pb-4
+      overflow-hidden relative h-full flex flex-col">
 
-      <div className="absolute inset-6 flex justify-between pointer-events-none">
-        {Array.from({ length: 9 }).map((_, i) => (
-          <div key={i} className="w-px bg-white/5" />
+      {/* Title */}
+      <h3 className="text-white text-sm font-medium mb-5 shrink-0">
+        Top Active Ports
+      </h3>
+
+      {/* Bar chart — flex-1 fills remaining card height */}
+      <div className="flex items-end gap-[10px] flex-1 min-h-[110px]">
+        {bars.map((b, i) => (
+          <div key={i} className="flex-1 flex flex-col items-center justify-end h-full">
+            <div
+              className="w-full rounded-full transition-all duration-700"
+              style={{
+                height: `${b.value}%`,
+                background:
+                  "linear-gradient(180deg,#a5f3fc 0%,#67e8f9 15%,#22d3ee 35%,#3b82f6 65%,#1d4ed8 100%)",
+                boxShadow: "0 0 12px rgba(103,232,249,0.25)",
+              }}
+            />
+          </div>
         ))}
       </div>
 
-      <div className="relative h-56 flex items-end gap-3">
-        {barData.map((h, i) => (
-          <div
-            key={i}
-            className="flex-1 rounded-full"
-            style={{
-              height: `${h}%`,
-              background:
-                "linear-gradient(180deg, #67e8f9 0%, #2563eb 70%, rgba(37,99,235,0.1) 100%)",
-            }}
-          />
-        ))}
-      </div>
-
-      <div className="flex justify-between text-xs text-white/40 mt-4">
-        {["28", "32", "36", "42", "56", "68", "72", "85", "92"].map((v) => (
-          <span key={v}>{v}</span>
+      {/* Labels */}
+      <div className="flex gap-[10px] mt-[10px] shrink-0">
+        {bars.map((b, i) => (
+          <span key={i} className="flex-1 text-center text-[10px] text-white/40 leading-tight">
+            {b.label}
+          </span>
         ))}
       </div>
     </div>
