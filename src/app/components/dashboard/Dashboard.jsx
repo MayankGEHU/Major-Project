@@ -23,8 +23,8 @@ export default function Dashboard() {
               <button
                 key={i}
                 className={`px-3 py-2 rounded-xl text-xs sm:text-sm ${i === 0
-                    ? "bg-white text-black"
-                    : "bg-[#1a1a1a] text-gray-300"
+                  ? "bg-white text-black"
+                  : "bg-[#1a1a1a] text-gray-300"
                   }`}
               >
                 {item}
@@ -56,12 +56,12 @@ export default function Dashboard() {
             01 Jan 2025 - 31 Dec 2025
           </button>
 
- <button
-  onClick={generateReport}
-  className="bg-[#1a1a1a] px-3 py-2 rounded-lg text-xs"
->
-  Generate Report
-</button>
+          <button
+            onClick={generateReport}
+            className="bg-[#1a1a1a] px-3 py-2 rounded-lg text-xs"
+          >
+            Generate Report
+          </button>
         </div>
       </div>
 

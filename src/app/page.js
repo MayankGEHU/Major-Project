@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+
 import Nav from "./components/ui/Nav";
 import Hero from "./components/ui/Hero";
 import About from "./components/ui/About";

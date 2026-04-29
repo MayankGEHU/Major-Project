@@ -14,7 +14,7 @@ export default function StatsCircleCard() {
 
   return (
     <div className="bg-white/5 backdrop-blur-xl border border-white/10 shadow-[inset_0_0_20px_rgba(255,255,255,0.05)] rounded-[28px] p-4 w-full relative overflow-hidden">
-      
+
       <div className="flex justify-between items-center mb-5">
         <h2 className="text-white text-sm font-medium">
           Open alerts by classification
@@ -31,7 +31,7 @@ export default function StatsCircleCard() {
       </div>
 
       <div className="relative flex items-end justify-between h-[200px] px-2 pb-1">
-        
+
         <div className="absolute inset-0 flex items-end justify-between px-2">
           {[...Array(24)].map((_, i) => (
             <div key={i} className="w-[6px] bg-white/5 rounded-full h-full" />
@@ -57,7 +57,7 @@ export default function StatsCircleCard() {
 
             {hovered === i && (
               <div className="absolute -top-24 bg-[#111] border border-white/10 rounded-xl p-3 text-xs text-white/70 shadow-xl w-[150px] animate-fadeIn">
-                
+
                 <div className="flex justify-between mb-2 text-white/80">
                   <span>12 May</span>
                   <span>{item.time}</span>
@@ -77,9 +77,8 @@ export default function StatsCircleCard() {
 
 const Bar = ({ h, color, active }) => (
   <div
-    className={`w-[6px] ${color} rounded-full transition-all duration-300 ${
-      active ? "opacity-100 scale-110" : "opacity-70"
-    }`}
+    className={`w-[6px] ${color} rounded-full transition-all duration-300 ${active ? "opacity-100 scale-110" : "opacity-70"
+      }`}
     style={{ height: `${h * 2}px` }}
   />
 );
