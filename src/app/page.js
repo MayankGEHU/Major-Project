@@ -13,6 +13,7 @@ import Footer from "./components/ui/Footer";
 
 import ReactLenis from "lenis/react";
 
+
 export default function Page() {
   return (
     <ReactLenis
