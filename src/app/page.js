@@ -9,10 +9,6 @@ import OurQuality from "./components/ui/OurQuality";
 import Experience from "./components/experience/Experience";
 import Working from "./components/ui/Working";
 import Footer from "./components/ui/Footer";
-// import AboutTheQuantsential from "./components/ui/AboutTheQuantsential";
-import Protect from "./components/ui/Protect";
-
-import HeroSection from "./components/ui/HeroSection";
 
 import ReactLenis from "lenis/react";
 
@@ -45,14 +41,9 @@ export default function Page() {
         <Features />
       </section>
 
-      {/* <Protect /> */}
-
       <section id="quality">
         <OurQuality />
       </section>
-
-
-      {/* <AboutTheQuantsential/> */}
 
       <section id="experience">
         <Experience />
@@ -61,8 +52,6 @@ export default function Page() {
       <section id="working">
         <Working />
       </section>
-
-
 
       <div
         className="relative h-[800px]"
