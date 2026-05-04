@@ -8,7 +8,6 @@ const LABEL_MAP = {
 };
 const resolveLabel = (raw) => LABEL_MAP[String(raw)] ?? raw;
 
-// Friendly display names matching the reference image aesthetic
 const DISPLAY_NAME = {
   "DDoS":         "DDoS Attack",
   "DoS Hulk":     "DoS Hulk",
@@ -77,7 +76,6 @@ const getColor = (level) => {
   }
 };
 
-// Collapse aliases so SSH-Patator shows as "Brute Force" and never duplicates
 const NORMALISE = { "SSH-Patator": "Brute Force", "Web Attack - Brute Force": "Web Attack" };
 const norm = (s) => NORMALISE[s] ?? s;
 
@@ -99,7 +97,6 @@ export default function ThreatsHeatmapCard({ topAttacks = [] }) {
   return (
     <div className="bg-[#0b0b0b] px-5 pt-5 pb-5 border border-white/5 rounded-[28px] text-white w-full h-full flex flex-col justify-between">
 
-      {/* Header */}
       <div className="flex justify-between items-center mb-[12px]">
         <h3 className="text-white text-sm font-medium tracking-tight">
           Threats Tactics (Last 12 Weeks)
@@ -109,7 +106,6 @@ export default function ThreatsHeatmapCard({ topAttacks = [] }) {
         </button>
       </div>
 
-      {/* Rows */}
       <div className="flex flex-col gap-[10px]">
         {mergedAttacks.map((attack, rowIndex) => {
           const count  = countMap[attack] || 0;
@@ -118,12 +114,10 @@ export default function ThreatsHeatmapCard({ topAttacks = [] }) {
 
           return (
             <div key={attack} className="flex items-center gap-3">
-              {/* Attack name */}
               <div className="w-[110px] shrink-0 text-[12px] text-gray-300 font-normal leading-snug">
                 {displayName(attack)}
               </div>
 
-              {/* Heat cells — slightly wider than tall, like reference */}
               <div className="flex flex-1 gap-[7px]">
                 {weeks.map((cell, ci) => (
                   <div
@@ -138,7 +132,6 @@ export default function ThreatsHeatmapCard({ topAttacks = [] }) {
         })}
       </div>
 
-      {/* Date labels */}
       <div className="flex items-start gap-3 mt-[10px]">
         <div className="w-[110px] shrink-0" />
         <div className="flex flex-1 gap-[7px]">

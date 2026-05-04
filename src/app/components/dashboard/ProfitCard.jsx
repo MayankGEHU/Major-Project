@@ -21,7 +21,6 @@ export default function ProfitCard({ recentAlerts = [] }) {
     return d.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", hour12: false });
   };
 
-  // Build display rows from live data, fall back to static placeholders if empty
   const fallback = [
     { time: "–", title: "Threat Detected",     subtitle: "SQL Injection Attempt",  amount: "High"     },
     { time: "–", title: "Anomaly Found",        subtitle: "Unusual Traffic Spike",  amount: "Medium"   },

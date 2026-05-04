@@ -70,7 +70,6 @@ function Sphere3D() {
 }
 
 export default function AiAssistantCard({ stats }) {
-  const [query, setQuery] = useState("");
   const [listening, setListening] = useState(false);
 
   const fmt = (n) => {
@@ -86,12 +85,6 @@ export default function AiAssistantCard({ stats }) {
     { label: "Blocked Attacks",   value: fmt((stats?.critical_count ?? 0) + (stats?.high_count ?? 0)), tag: "Auto Mitigated" },
   ];
 
-  const handleSearch = () => {
-    if (!query.trim()) return;
-    alert(`Searching for: ${query}`);
-    setQuery("");
-  };
-
   const handleMicClick = () => {
     setListening(!listening);
   };
@@ -104,7 +97,7 @@ export default function AiAssistantCard({ stats }) {
           <HiSparkles className="text-blue-400" size={20} />
         </div>
         <h2 className="text-lg font-medium text-gray-200">
-          AI Security Assistant
+          Gen AI Based IDS
         </h2>
       </div>
 
@@ -115,32 +108,16 @@ export default function AiAssistantCard({ stats }) {
       <div className="-mt-32 relative z-10">
 
         <div className="
-          flex items-center 
+          flex items-center justify-between
           bg-white/5 
           backdrop-blur-xl 
           border border-white/10 
-          rounded-2xl px-4 py-2 
+          rounded-2xl px-4 py-3 
           shadow-[0_8px_30px_rgba(0,0,0,0.5)]
         ">
-          <input
-            type="text"
-            placeholder="Ask Assistant..."
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-            className="flex-1 bg-transparent outline-none text-white placeholder-gray-300 text-sm"
-          />
-
-          <div
-            onClick={handleMicClick}
-            className={`w-10 h-10 ml-3 rounded-xl flex items-center justify-center cursor-pointer transition
-              ${listening
-                ? "bg-red-500/80 scale-110"
-                : "bg-white/10 backdrop-blur-md border border-white/10"}
-            `}
-          >
-            <FaMicrophone size={16} />
-          </div>
+          <h3 className="text-sm text-gray-200 font-medium tracking-wide">
+            Gen AI Based IDS
+          </h3>
         </div>
 
         <div className="

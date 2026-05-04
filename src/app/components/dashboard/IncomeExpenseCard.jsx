@@ -1,4 +1,3 @@
-// ── Identical LABEL_MAP + normalisation to BalanceCard ─────────────────────────
 const LABEL_MAP = {
   "0":"BENIGN","1":"DDoS","2":"DoS Hulk","3":"FTP-Patator",
   "4":"PortScan","5":"SSH-Patator","6":"Web Attack","7":"DoS GoldenEye",
@@ -7,17 +6,14 @@ const LABEL_MAP = {
 };
 const resolveLabel = (raw) => LABEL_MAP[String(raw)] ?? raw;
 
-// Same alias collapse as BalanceCard — prevents any duplicate labels
 const NORMALISE = { "SSH-Patator": "Brute Force", "Web Attack - Brute Force": "Web Attack" };
 const norm = (s) => NORMALISE[s] ?? s;
 
-// Same BASE_ATTACKS order as BalanceCard
 const BASE_ATTACKS = [
   "DDoS","Brute Force","Web Attack","SQL Injection",
   "DoS Hulk","PortScan","FTP-Patator",
 ];
 
-// Short labels for bar x-axis
 const SHORT_LABEL = {
   "DDoS":          "DDoS",
   "Brute Force":   "Brute",
@@ -37,7 +33,6 @@ const shorten = (s) => SHORT_LABEL[s] ?? (s.length > 6 ? s.slice(0, 5) + "…" :
 const FALLBACK_HEIGHTS = [88, 55, 67, 42, 78, 50, 35];
 
 export default function IncomeExpenseCard({ topAttacks = [] }) {
-  // ── Build countMap with same normalisation as BalanceCard ──────────────────
   const countMap = {};
   topAttacks.forEach((t) => {
     const label = norm(resolveLabel(t.label));
@@ -47,11 +42,10 @@ export default function IncomeExpenseCard({ topAttacks = [] }) {
   const liveNames = [...new Set(Object.keys(countMap))];
   const hasLive   = liveNames.length > 0;
 
-  // ── Exact same merge as BalanceCard → identical 6 attacks, same order ──────
   const mergedAttacks = [
     ...liveNames,
     ...BASE_ATTACKS.filter((a) => !liveNames.includes(a)),
-  ].slice(0, 6);   // ← 6 to match BalanceCard
+  ].slice(0, 6);   
 
   const maxCount = hasLive ? Math.max(...Object.values(countMap)) : 1;
 
@@ -67,12 +61,10 @@ export default function IncomeExpenseCard({ topAttacks = [] }) {
       shadow-[inset_0_0_20px_rgba(255,255,255,0.05)] px-5 pt-5 pb-4
       overflow-hidden relative h-full flex flex-col">
 
-      {/* Title */}
       <h3 className="text-white text-sm font-medium mb-5 shrink-0">
         Top Active Ports
       </h3>
 
-      {/* Bar chart — flex-1 fills remaining card height */}
       <div className="flex items-end gap-[10px] flex-1 min-h-[110px]">
         {bars.map((b, i) => (
           <div key={i} className="flex-1 flex flex-col items-center justify-end h-full">
@@ -89,7 +81,6 @@ export default function IncomeExpenseCard({ topAttacks = [] }) {
         ))}
       </div>
 
-      {/* Labels */}
       <div className="flex gap-[10px] mt-[10px] shrink-0">
         {bars.map((b, i) => (
           <span key={i} className="flex-1 text-center text-[10px] text-white/40 leading-tight">
